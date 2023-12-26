@@ -1,6 +1,6 @@
 import { useEffect, memo, useMemo } from "react";
 import { Card } from "@/components";
-import { CardSkeleton } from '.'
+import { CardSkeleton } from ".";
 import useFetchUrl from "@/hooks/useFetchUrl";
 
 const AllProducts = () => {
@@ -14,16 +14,16 @@ const AllProducts = () => {
     return <h2 className="text-2xl text-rose-500">{error}</h2>;
   }
 
-  if (loading) {
-    return <CardSkeleton />;
-  }
-
   const memoizedCard = useMemo(() => {
     if(data) {
       return data?.map((item) => <Card key={item.id} data={item} />)
     }
     return [];
   }, [data])
+
+  if (loading) {
+    return <CardSkeleton />;
+  }
 
   return (
     <div className="w-full min-h-screen flex flex-wrap justify-center items-center p-4 gap-3">
