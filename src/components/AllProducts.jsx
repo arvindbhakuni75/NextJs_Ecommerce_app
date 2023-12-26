@@ -18,13 +18,6 @@ const AllProducts = () => {
     return <CardSkeleton />;
   }
 
-  // const memoizedCards = useMemo(() => {
-  //   if(data) {
-  //     return data?.map((item) => <Card key={item.id} data={item} />)
-  //   }
-  //   return []
-  // }, [data])
-
   return (
     <div className="w-full min-h-screen flex flex-wrap justify-center items-center p-4 gap-3">
       { data?.map((item) => <Card key={item.id} data={item} />) }
