@@ -23,13 +23,10 @@ const Navbar = () => {
     dispatch(setSearchKey(e.target.value));
   };
 
-  //
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  //
 
   return (
     <>

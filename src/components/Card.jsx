@@ -14,7 +14,7 @@ const Card = ({data}) => {
 
 
   return (
-    <div className="w-[300px] flex flex-col justify-between border border-gray-300 shadow-2xl rounded-lg p-4 h-[420px] bg-white">
+    <div className="md:w-[300px] flex flex-col justify-between border border-gray-300 shadow-2xl rounded-lg p-4 h-[420px] bg-white">
       <Link href={`/product/${id}`}>
         <div className="w-full">
           <img

@@ -28,6 +28,10 @@ const SearchResult = () => {
     } else {
       setSearchResults(null)
     } 
+
+    if(inputSearch.length === 0) {
+      dispatch(toggleSearchResult(false))
+    }
   }, [inputSearch, data])
 
   const handleSearchItem = (id) => {

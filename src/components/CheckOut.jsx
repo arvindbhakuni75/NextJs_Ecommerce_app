@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCheckOut, removeFromCard } from "../store/addToCardSlice";
 import Link from "next/link";
@@ -11,16 +11,17 @@ const CheckOut = () => {
   const dispatch = useDispatch();
   const navigate = useRouter();
 
-  const totalAmount = cardItems
-    .reduce((accumulator, currentValue) => {
+  const totalAmount = useMemo(() => {
+    cardItems.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.price;
     }, 0)
     .toFixed(2);
+  }, [cardItems])
 
-  const sentToDetailPage = (id) => {
+  const sentToDetailPage = useCallback((id) => {
     navigate.push(`/product/${id}`);
     dispatch(toggleCheckOut(false));
-  };
+  }, [navigate]);
 
 
   return (
@@ -69,6 +70,11 @@ const CheckOut = () => {
               <div className="mt-8">
                 <div className="flow-root">
                   <ul className="my-6 divide-y divide-gray-200">
+                    { (cardItems?.length < 1) && (
+                      <div className="flex items-center justify-center">
+                        <img src="/emptyTrolley.png" alt="trolley" className="w-[250px] h-[250px]" />
+                      </div>
+                    ) }
                     {cardItems?.map((item, index) => (
                       <li key={index} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md">
